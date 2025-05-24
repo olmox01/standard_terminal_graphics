@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=STG Demo
+Comment=Standard Terminal Graphics Demo - Advanced Terminal UI
+Exec=stg-demo
+Icon=utilities-terminal
+Terminal=true
+Type=Application
+Categories=Graphics;Development;Utility;
+Keywords=terminal;graphics;braille;demo;
+StartupNotify=false

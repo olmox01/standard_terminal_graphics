@@ -1,0 +1,22 @@
+#!/bin/sh
+# Pre-remove script per STG su Alpine Linux
+
+echo "🗑️  Rimozione STG..."
+
+# Backup della configurazione se modificata
+if [ -f /etc/stg/config.toml ]; then
+    if ! cmp -s /etc/stg/config.toml /etc/stg/config.toml.default 2>/dev/null; then
+        echo "💾 Backup configurazione personalizzata..."
+        cp /etc/stg/config.toml /tmp/stg-config-backup.toml
+        echo "   Backup salvato in /tmp/stg-config-backup.toml"
+    fi
+fi
+
+# Termina eventuali processi STG in esecuzione
+if pgrep -f stg-demo > /dev/null; then
+    echo "🔄 Terminazione processi STG in esecuzione..."
+    pkill -f stg-demo
+fi
+
+echo "✅ STG rimosso con successo!"
+echo "   La configurazione di backup (se presente) è in /tmp/stg-config-backup.toml"

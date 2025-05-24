@@ -1,0 +1,41 @@
+#!/bin/sh
+# Post-install script per STG su Alpine Linux
+
+echo "🎨 Configurazione STG..."
+
+# Crea configurazione di default se non esiste
+if [ ! -f /etc/stg/config.toml ]; then
+    cat > /etc/stg/config.toml << 'EOF'
+# Configurazione STG - Standard Terminal Graphics
+version = "1.0"
+default_width = 80
+default_height = 24
+color_support = true
+unicode_support = true
+
+[graphics]
+enable_animations = true
+fps_limit = 60
+
+[terminal]
+clear_on_exit = true
+preserve_cursor = false
+EOF
+    echo "✅ Configurazione di default creata in /etc/stg/config.toml"
+fi
+
+# Verifica che il binario sia eseguibile
+if [ -x /usr/bin/stg-demo ]; then
+    echo "✅ STG installato con successo!"
+    echo "   Esegui 'stg-demo' per una demo delle funzionalità"
+else
+    echo "❌ Errore: binario non trovato o non eseguibile"
+    exit 1
+fi
+
+# Aggiunge al PATH se necessario
+if ! echo $PATH | grep -q "/usr/bin"; then
+    echo "💡 Assicurati che /usr/bin sia nel tuo PATH"
+fi
+
+echo "📚 Documentazione disponibile in /usr/share/doc/stg/"

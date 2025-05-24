@@ -1,0 +1,68 @@
+[package]
+name = "standard_terminal_graphics"
+version = "0.1.0"
+edition = "2021"
+authors = ["Standard Terminal Graphics Team"]
+description = "A Rust library for advanced terminal graphics using Unicode Braille characters and interactive UI systems"
+license = "MIT"
+repository = "https://github.com/example/standard_terminal_graphics"
+keywords = ["terminal", "graphics", "braille", "ui", "tui"]
+categories = ["command-line-utilities", "graphics", "visualization"]
+
+[dependencies]
+crossterm = "0.27"
+image = "0.24"
+memmap2 = "0.9"
+once_cell = "1.21"
+parking_lot = "0.12"
+rayon = "1.10"
+
+# Definisce il binario principale
+[[bin]]
+name = "stg-demo"
+path = "examples/demo.rs"
+
+[[example]]
+name = "demo"
+path = "examples/demo.rs"
+
+# Configurazione per packaging .deb
+[package.metadata.deb]
+maintainer = "Standard Terminal Graphics Team <team@example.com>"
+copyright = "2024, Standard Terminal Graphics Team <team@example.com>"
+license-file = ["LICENSE", "4"]
+extended-description = """\
+Standard Terminal Graphics (STG) is an advanced terminal graphics library
+that provides high-density pixel rendering using Unicode Braille characters,
+interactive UI widgets, window management, and animation systems.
+
+Features:
+- Unicode Braille rendering for images
+- Interactive UI components (buttons, text input)
+- Multi-window desktop environment
+- Mouse and keyboard input handling
+- Real-time animations and effects
+"""
+depends = "$auto, libc6 (>= 2.31)"
+section = "graphics"
+priority = "optional"
+assets = [
+    ["target/release/stg-demo", "usr/bin/stg-demo", "755"],
+    ["README.md", "usr/share/doc/standard-terminal-graphics/README.md", "644"],
+    ["LICENSE", "usr/share/doc/standard-terminal-graphics/LICENSE", "644"],
+]
+
+# Desktop entry per menu applicazioni
+[package.metadata.deb.systemd-units]
+
+# Profilo release ottimizzato per ridurre overhead
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+# Profilo dev silenzioso
+[profile.dev]
+opt-level = 1

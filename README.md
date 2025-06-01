@@ -283,24 +283,4 @@ Contributions are welcome! Please:
 - Update documentation
 - Maintain API compatibility where possible
 
-## 📄 License
 
-This project is released under the **MIT** license. See the [LICENSE](LICENSE) file for details.
-
-## 🏆 Acknowledgments
-
-- **crossterm** team for excellent terminal support
-- **Rust** community for tools and ecosystem
-- **ASCII art** projects for graphics inspiration
-- **Alpine Linux** team for packaging support
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourrepo/stg/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourrepo/stg/discussions)
-- **Documentation**: [docs.rs](https://docs.rs/standard_terminal_graphics)
-- **Examples**: `examples/` folder in the repository
-
----
-
-*Made with ❤️ for the terminal graphics community*
